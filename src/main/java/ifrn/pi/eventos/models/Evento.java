@@ -1,9 +1,16 @@
 package ifrn.pi.eventos.models;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Evento {
@@ -11,10 +18,15 @@ public class Evento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
 	private String nome;
-	private String data;
+	@NotBlank
 	private String local;
-	private String horario;
+	@NotNull
+	@DateTimeFormat (pattern = "yyyy-MM-dd")
+	private LocalDate data;
+	@NotNull
+	private LocalTime horario;
 
 	public Long getId() {
 		return id;
@@ -32,11 +44,11 @@ public class Evento {
 		this.nome = nome;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
@@ -48,11 +60,11 @@ public class Evento {
 		this.local = local;
 	}
 
-	public String getHorario() {
+	public LocalTime getHorario() {
 		return horario;
 	}
 
-	public void setHorario(String horario) {
+	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
 
